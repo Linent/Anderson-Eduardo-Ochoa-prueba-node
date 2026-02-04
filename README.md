@@ -78,7 +78,7 @@ npm run db:seed
 npm run dev
 ```
 
-El servidor se ejecutará en ejemplo: `http://localhost:3000`
+El servidor se ejecutará por en ejemplo: `http://localhost:3000`
 
 ## Endpoints
 
