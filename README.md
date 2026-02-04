@@ -7,10 +7,9 @@ API REST para gestión de tiendas, productos, pedidos y promociones desarrollada
 - [Tecnologías](#tecnologías)
 - [Requisitos Previos](#requisitos-previos)
 - [Configuración del Entorno](#️configuración-del-entorno)
-- [Instrucciones para ejecutar la API](#️instrucciones-para-ejecutar-la-api)
+- [Instrucciones para ejecutar la API](#instrucciones-para-ejecutar-la-api)
 - [Endpoints](#endpoints)
 - [Documentación API](#documentación-api)
-- [Arquitectura](#️arquitectura)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [Scripts Disponibles](#scripts-disponibles)
 
