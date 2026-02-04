@@ -48,9 +48,9 @@ NODE_ENV=development
 PORT=3000
 
 # Database Configuration
-DB_HOST=localhost
+DB_HOST=
 DB_PORT=5432
-DB_NAME=market_db
+DB_NAME=market
 DB_USER=root
 DB_PASSWORD=tu_password
 ```
