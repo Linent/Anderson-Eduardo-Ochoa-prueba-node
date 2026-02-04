@@ -4,16 +4,17 @@ API REST para gestión de tiendas, productos, pedidos y promociones desarrollada
 
 ## 📋 Tabla de Contenidos
 
-- [Tecnologías](#tecnologías)
-- [Requisitos Previos](#requisitos-previos)
-- [Configuración del Entorno](#configuración-del-entorno)
-- [Instalación](#instalación)
-- [Ejecución](#ejecución)
-- [Endpoints](#endpoints)
-- [Documentación API](#documentación-api)
-- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Tecnologías](#-tecnologías)
+- [Requisitos Previos](#-requisitos-previos)
+- [Configuración del Entorno](#️-configuración-del-entorno)
+- [Instrucciones para ejecutar la API](#️-instrucciones-para-ejecutar-la-api)
+- [Endpoints](#-endpoints)
+- [Documentación API](#-documentación-api)
+- [Arquitectura](#️-arquitectura)
+- [Estructura del Proyecto](#-estructura-del-proyecto)
+- [Scripts Disponibles](#-scripts-disponibles)
 
-# 🚀 Tecnologías
+## Tecnologías
 
 - **Node.js** v18+
 - **Express** v4.18
@@ -21,18 +22,18 @@ API REST para gestión de tiendas, productos, pedidos y promociones desarrollada
 - **PostgreSQL** v14+
 - **Swagger** (Documentación)
 
-# 📦 Requisitos Previos
+## Requisitos Previos
 
 - Node.js v18 o superior
 - PostgreSQL v14 o superior
 - npm o yarn
 
-# ⚙️ Configuración del Entorno
+## Configuración del Entorno
 
 ### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/tu-usuario/tu-nombre-prueba-node.git
-cd tu-nombre-prueba-node
+git clone https://github.com/Linent/Anderson-Eduardo-Ochoa-prueba-node.git
+cd Anderson-Eduardo-Ochoa-prueba-node
 ```
 
 ### 2. Instalar dependencias
@@ -49,7 +50,7 @@ PORT=3000
 
 # Database Configuration
 DB_HOST=localhost
-DB_PORT=3306
+DB_PORT=5432
 DB_NAME=market_db
 DB_USER=root
 DB_PASSWORD=tu_password
@@ -69,26 +70,18 @@ npm run db:create
 npm run db:seed
 ```
 
-# 🏃‍♂️ Instrucciones para ejecutar la API
+## Instrucciones para ejecutar la API
 
 ### Modo desarrollo
 
-Ejecuta los siguientes comandos en orden:
-
 ```bash
-# Crear las tablas en la base de datos
-npm run db:create
-
-# Cargar datos de prueba (seeders)
-npm run db:seed
-
 # Iniciar el servidor en modo desarrollo
 npm run dev
 ```
 
 El servidor se ejecutará en ejemplo: `http://localhost:3000`
 
-# 📍 Endpoints
+## Endpoints
 
 ### 1. Listar productos con stock por tienda
 ```http
@@ -177,14 +170,14 @@ GET /api/promociones?dia=3
 }
 ```
 
-# 📚 Documentación API
+## Documentación API
 
 La documentación completa de la API está disponible en Swagger UI:
 ```
 http://localhost:3000/api-docs
 ```
 
-# 📁 Estructura del Proyecto
+## Estructura del Proyecto
 ```
 market-api/
 ├── src/
@@ -215,10 +208,10 @@ market-api/
 └── README.md
 ```
 
-# 🔧 Scripts Disponibles
+## Scripts Disponibles
 ```bash
 
-ejecutar uno a uno esto
+ejecutar uno a uno esto solo una vez al empezar el proyecto luego no es necesario
 
 # Ejecutar creación de la BD
 npm run db:create
@@ -233,20 +226,21 @@ npm run seed:undo
 npm run dev
 ```
 
-# 👤 Autor
+## Autor
 
 ### Anderson Eduardo Ochoa Peñaranda
 
-# 📝 Licencia
+## Licencia
 ```
 ISC
 ```
 
-# .gitignore
-  node_modules/
-  .env
-# Dependencies
+## .gitignore
+  - node_modules/
+  - .env
+  - entre otros...
+## Dependencies
 node_modules/
 
-# Environment variables
+## Environment variables
 .env
