@@ -13,7 +13,7 @@ API REST para gestión de tiendas, productos, pedidos y promociones desarrollada
 - [Documentación API](#documentación-api)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 
-## 🚀 Tecnologías
+# 🚀 Tecnologías
 
 - **Node.js** v18+
 - **Express** v4.18
@@ -21,13 +21,13 @@ API REST para gestión de tiendas, productos, pedidos y promociones desarrollada
 - **PostgreSQL** v14+
 - **Swagger** (Documentación)
 
-## 📦 Requisitos Previos
+# 📦 Requisitos Previos
 
 - Node.js v18 o superior
 - PostgreSQL v14 o superior
 - npm o yarn
 
-## ⚙️ Configuración del Entorno
+# ⚙️ Configuración del Entorno
 
 ### 1. Clonar el repositorio
 ```bash
@@ -69,16 +69,26 @@ npm run db:create
 npm run db:seed
 ```
 
-## 🏃 Ejecución
+# 🏃‍♂️ Instrucciones para ejecutar la API
 
 ### Modo desarrollo
+
+Ejecuta los siguientes comandos en orden:
+
 ```bash
+# Crear las tablas en la base de datos
+npm run db:create
+
+# Cargar datos de prueba (seeders)
+npm run db:seed
+
+# Iniciar el servidor en modo desarrollo
 npm run dev
 ```
 
 El servidor se ejecutará en ejemplo: `http://localhost:3000`
 
-## 📍 Endpoints
+# 📍 Endpoints
 
 ### 1. Listar productos con stock por tienda
 ```http
@@ -167,14 +177,14 @@ GET /api/promociones?dia=3
 }
 ```
 
-## 📚 Documentación API
+# 📚 Documentación API
 
 La documentación completa de la API está disponible en Swagger UI:
 ```
 http://localhost:3000/api-docs
 ```
 
-## 📁 Estructura del Proyecto
+# 📁 Estructura del Proyecto
 ```
 market-api/
 ├── src/
@@ -205,7 +215,7 @@ market-api/
 └── README.md
 ```
 
-## 🔧 Scripts Disponibles
+# 🔧 Scripts Disponibles
 ```bash
 
 ejecutar uno a uno esto
@@ -223,18 +233,18 @@ npm run seed:undo
 npm run dev
 ```
 
-## 👤 Autor
+# 👤 Autor
 
 ### Anderson Eduardo Ochoa Peñaranda
 
-## 📝 Licencia
-
+# 📝 Licencia
+```
 ISC
 ```
 
-## 9. .gitignore
-```
 # .gitignore
+  node_modules/
+  .env
 # Dependencies
 node_modules/
 

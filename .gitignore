@@ -54,14 +54,3 @@ build/
 # Coverage / Tests
 # =========================
 coverage/
-
-# =========================
-# Sequelize / Database
-# =========================
-sequelize-meta.json
-
-# =========================
-# Temporary files
-# =========================
-tmp/
-temp/
