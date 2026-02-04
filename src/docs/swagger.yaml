@@ -1,0 +1,345 @@
+openapi: 3.0.0
+info:
+  title: Market API
+  version: 1.0.0
+  description: API para gestión de tiendas, productos, pedidos y promociones
+  contact:
+    name: API Support
+    email: support@market.com
+
+servers:
+  - url: http://localhost:3000
+    description: Servidor de desarrollo
+  - url: https://api.market.com
+    description: Servidor de producción
+
+tags:
+  - name: Productos
+    description: Endpoints relacionados con productos
+  - name: Categorías
+    description: Endpoints relacionados con categorías
+  - name: Promociones
+    description: Endpoints relacionados con promociones
+
+paths:
+  /api/productos:
+    get:
+      summary: Listar productos con stock por tienda
+      description: Obtiene todos los productos con su información básica y stock disponible en cada tienda
+      tags:
+        - Productos
+      responses:
+        '200':
+          description: Lista de productos consultada correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: consultado correctamente
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProductoConStock'
+              examples:
+                success:
+                  summary: Respuesta exitosa
+                  value:
+                    message: consultado correctamente
+                    data:
+                      - idProducto: 95
+                        nombre: Gaseosa postobon
+                        presentacion: 355ml
+                        tiendas:
+                          - idTienda: 2
+                            nombre: Mas x menos
+                            stock: 100
+                          - idTienda: 4
+                            nombre: Exito
+                            stock: 250
+        '500':
+          description: Error al consultar productos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/productos/mas-vendidos:
+    get:
+      summary: Listar los 10 productos más vendidos
+      description: Obtiene los 10 productos más vendidos ordenados por cantidad de unidades vendidas en orden descendente
+      tags:
+        - Productos
+      responses:
+        '200':
+          description: Lista de productos más vendidos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: consultado correctamente
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProductoMasVendido'
+              examples:
+                success:
+                  summary: Respuesta exitosa
+                  value:
+                    message: consultado correctamente
+                    data:
+                      - idProducto: 95
+                        nombre: Gaseosa postobon
+                        presentacion: 355ml
+                        unidadesVendidas: 56
+                      - idProducto: 12
+                        nombre: Cerveza aguila
+                        presentacion: 1litro
+                        unidadesVendidas: 22
+        '500':
+          description: Error al consultar productos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/categorias:
+    get:
+      summary: Listar categorías con productos
+      description: Obtiene categorías que tengan al menos un producto, ordenadas por cantidad de productos en orden descendente
+      tags:
+        - Categorías
+      responses:
+        '200':
+          description: Lista de categorías consultada correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: consultado correctamente
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CategoriaConProductos'
+              examples:
+                success:
+                  summary: Respuesta exitosa
+                  value:
+                    message: consultado correctamente
+                    data:
+                      - idCategoria: 12
+                        nombre: Frutas y venduras
+                        cantProductos: 20
+                      - idCategoria: 18
+                        nombre: Bebidas
+                        cantProductos: 15
+        '500':
+          description: Error al consultar categorías
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/promociones:
+    get:
+      summary: Listar promociones por día de la semana
+      description: |
+        Obtiene las promociones que aplican según el día de la semana proporcionado.
+        
+        **Funcionamiento:**
+        - Consulta la columna `dias_semana` de la tabla PROMOCIONES
+        - Esta columna contiene un array de 7 posiciones (una por cada día)
+        - Cada posición puede ser: 0 (No aplica) o 1 (Sí aplica)
+        - El primer día es Lunes (posición 0)
+        - Ejemplo: "0010000" significa que solo aplica los miércoles
+        
+        **Filtros adicionales:**
+        - Solo se muestran promociones activas (estado = 1)
+        - Solo se incluyen tiendas donde la promoción esté vigente según las fechas de INICIO y FIN
+      tags:
+        - Promociones
+      parameters:
+        - name: dia
+          in: query
+          required: true
+          description: |
+            Día de la semana (1-7):
+            - 1 = Lunes
+            - 2 = Martes
+            - 3 = Miércoles
+            - 4 = Jueves
+            - 5 = Viernes
+            - 6 = Sábado
+            - 7 = Domingo
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 7
+            example: 3
+      responses:
+        '200':
+          description: Lista de promociones consultada correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: consultado correctamente
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PromocionPorDia'
+              examples:
+                miercoles:
+                  summary: Promociones del miércoles
+                  value:
+                    message: consultado correctamente
+                    data:
+                      - idPromocion: 1
+                        nombre: Miercoles felices
+                        tiendas:
+                          - mas x menos
+                          - exito
+                          - D1
+                      - idPromocion: 5
+                        nombre: Miercoles de 2x1
+                        tiendas:
+                          - Dolar city
+                          - D1
+                      - idPromocion: 8
+                        nombre: Promocion solo los miercoles
+                        tiendas: []
+        '400':
+          description: Parámetro inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                parametroInvalido:
+                  summary: Día inválido
+                  value:
+                    message: El parámetro "dia" debe estar entre 1 (Lunes) y 7 (Domingo)
+        '500':
+          description: Error al consultar promociones
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    ProductoConStock:
+      type: object
+      properties:
+        idProducto:
+          type: integer
+          description: ID del producto
+          example: 95
+        nombre:
+          type: string
+          description: Nombre del producto
+          example: Gaseosa postobon
+        presentacion:
+          type: string
+          description: Presentación del producto
+          example: 355ml
+        tiendas:
+          type: array
+          description: Lista de tiendas donde está disponible el producto
+          items:
+            type: object
+            properties:
+              idTienda:
+                type: integer
+                description: ID de la tienda
+                example: 2
+              nombre:
+                type: string
+                description: Nombre de la tienda
+                example: Mas x menos
+              stock:
+                type: number
+                format: float
+                description: Cantidad disponible en stock
+                example: 100
+
+    ProductoMasVendido:
+      type: object
+      properties:
+        idProducto:
+          type: integer
+          description: ID del producto
+          example: 95
+        nombre:
+          type: string
+          description: Nombre del producto
+          example: Gaseosa postobon
+        presentacion:
+          type: string
+          description: Presentación del producto
+          example: 355ml
+        unidadesVendidas:
+          type: number
+          format: float
+          description: Total de unidades vendidas
+          example: 56
+
+    CategoriaConProductos:
+      type: object
+      properties:
+        idCategoria:
+          type: integer
+          description: ID de la categoría
+          example: 12
+        nombre:
+          type: string
+          description: Nombre de la categoría
+          example: Frutas y venduras
+        cantProductos:
+          type: integer
+          description: Cantidad de productos en la categoría
+          example: 20
+
+    PromocionPorDia:
+      type: object
+      properties:
+        idPromocion:
+          type: integer
+          description: ID de la promoción
+          example: 1
+        nombre:
+          type: string
+          description: Nombre de la promoción
+          example: Miercoles felices
+        tiendas:
+          type: array
+          description: Lista de tiendas donde la promoción está vigente
+          items:
+            type: string
+          example:
+            - mas x menos
+            - exito
+            - D1
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Mensaje de error
+          example: Error al consultar productos
+        error:
+          type: string
+          description: Detalle del error
+          example: Database connection failed
