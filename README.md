@@ -171,10 +171,105 @@ GET /api/promociones?dia=3
 
 ## Documentación API
 
-La documentación completa de la API está disponible en Swagger UI:
-```
+### Uso de Swagger (Documentación Interactiva)
+
+El proyecto incluye documentación interactiva de la API utilizando Swagger UI, lo que permite visualizar y probar todos los endpoints directamente desde el navegador.
+
+### Acceso a Swagger
+
+Con el proyecto en ejecución, accede a la siguiente URL:
+
 http://localhost:3000/api-docs
-```
+
+
+En esta interfaz podrás ver todas las rutas disponibles de la API organizadas por endpoint.
+
+### Cómo probar los endpoints
+
+Abre la ruta http://localhost:3000/api-docs en el navegador.
+
+Verás un listado de endpoints disponibles:
+
+/api/productos
+
+/api/productos/mas-vendidos
+
+/api/categorias
+
+/api/promociones
+
+Haz clic sobre el acordeón de la ruta que deseas probar.
+
+Presiona el botón "Try it out".
+
+(Si aplica) Ingresa los parámetros requeridos.
+
+Haz clic en "Execute" para enviar la solicitud.
+
+Revisa la respuesta que devuelve la API.
+
+### Descripción de los Endpoints
+🔹 /api/productos
+
+Lista todos los productos activos junto con el stock disponible en cada tienda.
+
+Qué se verá:
+
+Identificador del producto
+
+Nombre
+
+Presentación
+
+Listado de tiendas con su respectivo stock
+
+🔹 /api/productos/mas-vendidos
+
+Obtiene los 10 productos más vendidos, ordenados de mayor a menor según la cantidad total vendida.
+
+Qué se verá:
+
+Identificador del producto
+
+Nombre
+
+Presentación
+
+Total de unidades vendidas
+
+🔹 /api/categorias
+
+Lista las categorías que tienen productos asociados, mostrando cuántos productos hay por categoría.
+
+Qué se verá:
+
+Identificador de la categoría
+
+Nombre
+
+Cantidad de productos asociados
+
+🔹 /api/promociones
+
+Lista las promociones activas que aplican según un día de la semana.
+
+Parámetro requerido:
+
+dia → Número del día de la semana
+(1 = Lunes, 2 = Martes, ..., 7 = Domingo)
+
+Ejemplo:
+
+/api/promociones?dia=3
+
+
+Qué se verá:
+
+Identificador de la promoción
+
+Nombre de la promoción
+
+Listado de tiendas donde la promoción está disponible para el día indicado
 
 ## Estructura del Proyecto
 ```
